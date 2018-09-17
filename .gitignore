@@ -17,6 +17,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore IntelliJ-generated files
+.idea
+
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
