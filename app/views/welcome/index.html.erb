@@ -1,9 +1,13 @@
-<div class="tracker">
+<div class="tracker" data-controller="tracker">
   <div class="tracker-visuals">
-    <div class="timepiece-display">
-      <div class="timepiece">13:24</div>
+    <div class="clock-display">
+      <div class="clock" data-target="tracker.clock"><%= Time.now.strftime('%H:%M') %></div>
     </div>
-    <div class="actions"></div>
+    <div class="actions">
+      <div class="action-buttons-wrapper" data-action="click->tracker#newDay">
+        <%= link_to 'NEW DAY', '#', class: 'new-day-button' %>
+      </div>
+    </div>
   </div>
-  <div class="tracker-log"></div>
+  <%= render 'log_events/index', events: LogEvent.all %>
 </div>

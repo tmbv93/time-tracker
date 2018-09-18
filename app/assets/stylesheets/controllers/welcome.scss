@@ -15,26 +15,51 @@
     grid-template-columns: 100%;
     grid-template-rows: 37.89% 62.11%;
 
-    .timepiece-display {
+    .clock-display {
       background: linear-gradient(0turn, lighten($secondary, 10%), $secondary);
       display: grid;
       grid-template-columns: 100%;
       grid-template-rows: 100%;
       justify-items: center;
-      .timepiece {
+      .clock {
         align-self: end;
         font-size: 134px;
         font-weight: bold;
         color: $black;
-        text-shadow: 0 1px 3px rgba($black,.4);
+        text-shadow: 0 1px 3px rgba($black, .4);
+        transform: translateY(15%);
       }
     }
 
     .actions {
       background: linear-gradient(0turn, lighten($primary, 10%), $primary);
+
+      .action-buttons-wrapper {
+        padding: 20px;
+        text-align: center;
+
+      }
     }
   }
 
   .tracker-log {
   }
+}
+
+.new-day-button {
+  @extend .btn, .btn-success;
+  color: #fff;
+  font-size: xx-large;
+  font-weight: bold;
+  text-shadow: 0 1px 3px rgba(36, 179, 124, .45);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  padding-left: 28px;
+  padding-right: 28px;
+
+  &:hover {
+    color: darken($white, 10%);
+    border-color: darken($success, 10%);
+    background-color: darken($success, 10%);
+  }
+
 }

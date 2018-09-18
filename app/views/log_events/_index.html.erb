@@ -1,0 +1,14 @@
+<div id="tracker-log" class="tracker-log" data-controller="log">
+  <div class="container">
+    <h3>Logg</h3>
+    <div class="row">
+      <ul class="list-group">
+        <% events.each do |event| %>
+          <li class="event" data-id="<%= event.id %>">
+            <%= event.description %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
