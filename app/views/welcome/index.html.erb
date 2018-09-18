@@ -4,10 +4,14 @@
       <div class="clock" data-target="tracker.clock"><%= Time.now.strftime('%H:%M') %></div>
     </div>
     <div class="actions">
-      <div class="action-buttons-wrapper" data-action="click->tracker#newDay">
-        <%= link_to 'NEW DAY', '#', class: 'new-day-button' %>
+      <div class="action-buttons-wrapper">
+        <%= link_to 'NEW DAY', '#', class: 'new-day-button', data: {action: 'click->tracker#newDay'} %>
       </div>
     </div>
   </div>
-  <%= render 'log_events/index', events: LogEvent.all %>
+  <div id="work-sessions-log" class="work-sessions-log" data-controller="work_sessions">
+    <%= render 'work_sessions/index', work_sessions: WorkSession.all
+        .order(started_at: :desc)
+        .includes(:day, :activities) %>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :log_events, only: [:index, :create]
+  resources :activities, only: [:create]
+  resources :work_sessions, only: [:create]
 end

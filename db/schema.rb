@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_130858) do
+ActiveRecord::Schema.define(version: 2018_09_18_142512) do
 
-  create_table "log_events", force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
+    t.integer "work_session_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["work_session_id"], name: "index_activities_on_work_session_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "work_sessions", force: :cascade do |t|
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.integer "day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_work_sessions_on_day_id"
   end
 
 end

@@ -1,6 +1,6 @@
-class Day < ApplicationRecord
-  has_many :work_sessions
-  has_many :activities, through: :work_sessions
+class WorkSession < ApplicationRecord
+  belongs_to :day
+  has_many :activities
 
   scope :open, -> {where.not(started_at: nil).where(ended_at: nil)}
 
@@ -9,6 +9,6 @@ class Day < ApplicationRecord
   end
 
   def self.current_or_create
-    open.last || create(started_at: Time.now)
+    open.last || create(day: Day.current_or_create, started_at: Time.now)
   end
 end

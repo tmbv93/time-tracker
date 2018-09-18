@@ -42,7 +42,12 @@
     }
   }
 
-  .tracker-log {
+  .work-sessions-log {
+    justify-items: center;
+    .work-sessions-list {
+      width: 80%;
+      margin-top: 28px;
+    }
   }
 }
 

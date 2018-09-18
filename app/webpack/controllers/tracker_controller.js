@@ -1,5 +1,5 @@
 import {Controller} from 'stimulus'
-import Log from 'models/log'
+import Log from 'models/work_session'
 
 export default class extends Controller {
     static targets = ['clock']
@@ -16,6 +16,6 @@ export default class extends Controller {
     }
 
     newDay() {
-        this.log.refresh()
+        this.log.post()
     }
 }
