@@ -38,7 +38,7 @@ class ActivitiesControllerTest < ActionController::TestCase
   test '#create allows user to specify description' do
     new_description = Faker::GameOfThrones.quote
     post :create, params: {work_session_id: WorkSession.current_or_create,
-                           activity: {description: new_description}}
+                           activity: {description: new_description}}, xhr: true
     assert_equal new_description, Activity.last.description
   end
 end

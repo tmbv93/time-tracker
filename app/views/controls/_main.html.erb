@@ -10,12 +10,12 @@
     <div class="action-wrapper">
 
       <% if day.active? %>
-            <span class="break-button" data-action="click->tracker#newBreak">
-                <i class="fa fa-coffee"></i> BREAK
-              </span>
+        <%= link_to work_session_path('current'), method: :patch, remote: true, class: 'break-button' do %>
+          <i class="fa fa-coffee"></i> BREAK
+        <% end %>
       <% else %>
             <span class="break-button">
-                  <i class="fa fa-cog"></i> BREAK
+                  <i class="fa fa-cog"></i> END BREAK
             </span>
       <% end %>
     </div>
