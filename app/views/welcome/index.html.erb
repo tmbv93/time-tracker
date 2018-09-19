@@ -1,7 +1,7 @@
 <div class="tracker" data-controller="tracker">
   <div class="tracker-visuals">
     <div class="clock-display">
-      <div class="clock" data-target="tracker.clock"><%= Time.now.strftime('%H:%M') %></div>
+      <div class="clock" data-target="tracker.clock"><%= local_time(Time.current, '%H:%M') %></div>
     </div>
     <div class="actions">
       <%= render 'controls/main', day: @day %>

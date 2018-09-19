@@ -22,6 +22,9 @@ gem 'bootstrap', '~> 4.1.3'
 # Use FontAwesome Icons
 gem "font-awesome-rails"
 
+# JS / Ruby helpers that helps us display the right time zones
+gem 'local_time'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
