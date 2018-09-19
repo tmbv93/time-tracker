@@ -1,0 +1,20 @@
+<ul id="work-sessions-log" class="work-sessions-list">
+  <% current_day = nil %>
+  <% work_sessions.each do |work_session| %>
+    <% if current_day != work_session.day_id %>
+      <li class="feed-event new-day">
+        <%= work_session.day.started_at.in_time_zone.strftime('%A') %>
+        <span class="pull-right"><%= work_session.day.started_at.strftime('%H:%M') %></span>
+      </li>
+      <% current_day = work_session.day_id %>
+    <% else %>
+      <li class="feed-event new-session"></li>
+    <% end %>
+
+    <% work_session.activities.each do |activity| %>
+      <li class="feed-event activity">
+        <%= activity.description %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

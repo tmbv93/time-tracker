@@ -1,6 +1,6 @@
 class WorkSessionsController < ApplicationController
   def create
-    WorkSession.current_or_create
+    @work_session = WorkSession.current_or_create
     respond_to :js
   end
 

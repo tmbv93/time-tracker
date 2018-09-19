@@ -1,8 +1,12 @@
-@import 'colors';
+@import 'variables';
 @import 'bootstrap';
+@import 'font-awesome';
 
-// Controller specific stylesheets
+// Controller-specific styles
 @import 'controllers/*';
+
+// Component-specific styles
+@import 'components/*';
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

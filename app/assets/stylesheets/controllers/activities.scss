@@ -1,0 +1,27 @@
+.activity-text-field {
+  @extend .form-control;
+
+  display: inline;
+
+  margin-top: 18px;
+  margin-bottom: 32px;
+  height: 100px;
+  width: 200px * $golden-ratio;
+  text-align: center;
+
+  &::-webkit-input-placeholder {
+    text-align: center;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    text-align: center;
+  }
+
+  &:-ms-input-placeholder {
+    text-align: center;
+  }
+}

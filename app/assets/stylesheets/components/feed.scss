@@ -1,0 +1,10 @@
+.feed-event {
+  @extend .list-group-item;
+}
+
+.new-day {
+  background-color: $success;
+  color: white;
+  font-weight: bold;
+  border-color: $success;
+}

@@ -1,0 +1,4 @@
+full_day:
+  day: yesterday
+  started_at: <%= Time.current - 1.day %>
+  ended_at: <%= Time.current - 1.day + 8.hour %>

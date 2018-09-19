@@ -1,0 +1,34 @@
+<div id="main-controls" class="action-inputs-wrapper">
+  <% if day %>
+    <%= form_tag work_session_activities_path(work_session_id: 'current'), remote: true do %>
+      <%= text_field_tag 'activity[description]', nil,
+                         data: {target: 'tracker.activityText'},
+                         class: 'activity-text-field',
+                         required: true,
+                         placeholder: 'What are you up to?' %>
+    <% end %>
+    <div class="action-wrapper">
+
+      <% if day.active? %>
+            <span class="break-button" data-action="click->tracker#newBreak">
+                <i class="fa fa-coffee"></i> BREAK
+              </span>
+      <% else %>
+            <span class="break-button">
+                  <i class="fa fa-cog"></i> BREAK
+            </span>
+      <% end %>
+    </div>
+    <div class="action-wrapper">
+            <span class="end-day-button">
+              <i class="fa fa-moon-o"></i> END DAY
+            </span>
+    </div>
+  <% else %>
+    <div class="action-wrapper">
+      <%= button_to work_sessions_path, class: 'new-day-button', remote: true do %>
+        <i class="fa fa-sun-o"></i> NEW DAY
+      <% end %>
+    </div>
+  <% end %>
+</div>

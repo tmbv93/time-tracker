@@ -34,10 +34,9 @@
     .actions {
       background: linear-gradient(0turn, lighten($primary, 10%), $primary);
 
-      .action-buttons-wrapper {
+      .action-inputs-wrapper {
         padding: 20px;
         text-align: center;
-
       }
     }
   }
@@ -51,20 +50,54 @@
   }
 }
 
-.new-day-button {
-  @extend .btn, .btn-success;
-  color: #fff;
+.action-wrapper {
+  margin-bottom: 15px;
+}
+
+.action-button {
+  @extend .btn;
   font-size: xx-large;
   font-weight: bold;
-  text-shadow: 0 1px 3px rgba(36, 179, 124, .45);
   box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
   padding-left: 28px;
   padding-right: 28px;
+  width: 280px;
+}
+
+.new-day-button {
+  @extend .action-button, .btn-success;
+  color: $white;
+  text-shadow: 0 1px 3px rgba(36, 179, 124, .45);
 
   &:hover {
     color: darken($white, 10%);
     border-color: darken($success, 10%);
     background-color: darken($success, 10%);
   }
+}
 
+.break-button {
+  @extend .action-button, .btn-secondary;
+
+  color: $white;
+  text-shadow: 0 1px 3px rgba($secondary, .45);
+
+  &:hover {
+    color: darken($white, 10%);
+    border-color: darken($secondary, 10%);
+    background-color: darken($secondary, 10%);
+  }
+}
+
+.end-day-button {
+  @extend .action-button, .btn-warning;
+
+  color: $white;
+  text-shadow: 0 1px 3px rgba($warning, .45);
+
+  &:hover {
+    color: darken($white, 10%);
+    border-color: darken($warning, 10%);
+    background-color: darken($warning, 10%);
+  }
 }
