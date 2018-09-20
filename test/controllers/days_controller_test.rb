@@ -7,7 +7,7 @@ class DaysControllerTest < ActionController::TestCase
   end
 
   test '#show succeeds' do
-    get :show, params: {id: days(:yesterday).id}
+    get :show, params: {id: 'current'}
     assert_response :success
   end
 

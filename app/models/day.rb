@@ -12,6 +12,10 @@ class Day < ApplicationRecord
     open? && work_sessions.open.any?
   end
 
+  def work_time
+    work_sessions.sum {|ws| ws.ended_at - ws.started_at}
+  end
+
   def self.current
     open.last
   end

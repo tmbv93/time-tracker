@@ -29,21 +29,23 @@
     <% end %>
   <% end %>
 
-  <% if !work_sessions.last.open? && work_sessions.last.day.open? %>
-    <li class="feed-event break">
-      <i class="fa fa-coffee"></i>
-      Break
-      <span class="pull-right">
+  <% if work_sessions.last.present? %>
+    <% if !work_sessions.last.open? && work_sessions.last.day.open? %>
+      <li class="feed-event break">
+        <i class="fa fa-coffee"></i>
+        Break
+        <span class="pull-right">
       <%= local_time(work_sessions.last.ended_at, '%H:%M') %>
       </span>
-    </li>
-  <% elsif !work_sessions.last.day.open? %>
-    <li class="feed-event end-day">
-      <i class="fa fa-moon-o"></i>
-      End of day
-      <span class="pull-right">
+      </li>
+    <% elsif !work_sessions.last.day.open? %>
+      <li class="feed-event end-day">
+        <i class="fa fa-moon-o"></i>
+        End of day - worked for <%= distance_of_time_in_words work_sessions.last.day.work_time %>.
+        <span class="pull-right">
       <%= local_time(work_sessions.last.day.ended_at, '%H:%M') %>
       </span>
-    </li>
+      </li>
+    <% end %>
   <% end %>
 </ul>

@@ -24,7 +24,7 @@
               <i class="fa fa-arrow-left new-day-pointer"></i></p>
           <% end %>
         </div>
-        <div class="no-day-footer">
+        <div class="no-day-footer text-center">
           <% if Day.any? %>
             <%= link_to 'Last day', day_path(Day.last), class: 'new-day-button' %>
           <% end %>
