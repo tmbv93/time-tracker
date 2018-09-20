@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2018_09_18_142512) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
-    t.integer "work_session_id"
+    t.bigint "work_session_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,10 +33,12 @@ ActiveRecord::Schema.define(version: 2018_09_18_142512) do
   create_table "work_sessions", force: :cascade do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.integer "day_id"
+    t.bigint "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_work_sessions_on_day_id"
   end
 
+  add_foreign_key "activities", "work_sessions"
+  add_foreign_key "work_sessions", "days"
 end
