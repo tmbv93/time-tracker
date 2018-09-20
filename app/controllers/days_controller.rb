@@ -20,7 +20,7 @@ class DaysController < ApplicationController
     if params[:id] == 'current'
       @day = Day.current_or_create
     else
-      @day = Day.open.find(params[:id])
+      @day = Day.find(params[:id])
     end
   end
 end
