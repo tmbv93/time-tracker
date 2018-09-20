@@ -1,0 +1,4 @@
+$('#work-sessions-list').replaceWith('<%= escape_javascript(render 'work_sessions/feed',
+  work_sessions: @day.work_sessions.feed) %>');
+
+$('#main-controls').replaceWith('<%= escape_javascript(render 'controls/main', day: @day) %>')

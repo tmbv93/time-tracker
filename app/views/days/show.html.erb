@@ -1,0 +1,35 @@
+<div class="tracker" data-controller="tracker">
+  <div class="tracker-visuals">
+    <div class="clock-display">
+      <div class="clock" data-target="tracker.clock"><%= local_time(Time.current, '%H:%M') %></div>
+    </div>
+    <div class="actions">
+      <%= render 'controls/main', day: @day %>
+    </div>
+  </div>
+  <div class="work-sessions-log" data-controller="work_sessions">
+    <% if @day %>
+      <%= render 'work_sessions/feed', work_sessions: @day.work_sessions.feed %>
+    <% else %>
+      <div id="work-sessions-list" class="no-day-display">
+        <div class="no-day-main">
+          <% if Day.any? %>
+            <h2 class="no-day-title">Hi! <i class="fa fa fa-sun-o"></i></h2>
+            <p class="no-day-text">Hit the 'New Day'-button to start logging hours.</p>
+          <% else %>
+            <h2 class="no-day-title">Hi!</h2>
+            <p class="no-day-text">Hit the <span class="text-success"><b>New Day-button</b></span> to start logging
+              hours.
+              <br>
+              <i class="fa fa-arrow-left new-day-pointer"></i></p>
+          <% end %>
+        </div>
+        <div class="no-day-footer">
+          <% if Day.any? %>
+            <%= link_to 'Last day', day_path(Day.last), class: 'new-day-button' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,4 @@
 $('#work-sessions-list').replaceWith('<%= escape_javascript(render 'work_sessions/feed',
-  work_sessions: WorkSession.all.includes(:day, :activities).order(started_at: :desc)) %>');
+  work_sessions: @work_session.day.work_sessions.feed) %>');
 
 $('#main-controls').replaceWith('<%= escape_javascript(render 'controls/main', day: @work_session.day) %>')

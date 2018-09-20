@@ -1,28 +1,49 @@
-<ul id="work-sessions-log" class="work-sessions-list">
+<ul id="work-sessions-list" class="work-sessions-list">
   <% current_day = nil %>
-  <% current_work_session = nil %>
+  <% last_work_session = nil %>
   <% work_sessions.each do |work_session| %>
     <% if current_day != work_session.day_id %>
       <li class="feed-event new-day">
+        <i class="fa fa-sun-o"></i>
         <%= local_time(work_session.day.started_at, '%A') %>
         <span class="pull-right"><%= local_time(work_session.day.started_at, '%H:%M') %></span>
       </li>
       <% current_day = work_session.day_id %>
     <% end %>
 
-    <% if work_session.after_break? current_work_session %>
+    <% if work_session.after_break? last_work_session %>
       <li class="feed-event break">
-        <%= work_session.day.started_at.strftime('%A') %>
+        <i class="fa fa-coffee"></i>
+        Break
         <span class="pull-right">
-          <%= formatted_break_time work_session %>
+        <%= local_time(last_work_session.ended_at, '%H:%M') %> - <%= local_time(work_session.started_at, '%H:%M') %>
         </span>
       </li>
     <% end %>
+    <% last_work_session = work_session %>
 
     <% work_session.activities.each do |activity| %>
       <li class="feed-event activity">
         <%= activity.description %>
       </li>
     <% end %>
+  <% end %>
+
+  <% if !work_sessions.last.open? && work_sessions.last.day.open? %>
+    <li class="feed-event break">
+      <i class="fa fa-coffee"></i>
+      Break
+      <span class="pull-right">
+      <%= local_time(work_sessions.last.ended_at, '%H:%M') %>
+      </span>
+    </li>
+  <% elsif !work_sessions.last.day.open? %>
+    <li class="feed-event end-day">
+      <i class="fa fa-moon-o"></i>
+      End of day
+      <span class="pull-right">
+      <%= local_time(work_sessions.last.day.ended_at, '%H:%M') %>
+      </span>
+    </li>
   <% end %>
 </ul>

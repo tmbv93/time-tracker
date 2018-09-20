@@ -1,28 +1,29 @@
 <div id="main-controls" class="action-inputs-wrapper">
-  <% if day %>
-    <%= form_tag work_session_activities_path(work_session_id: 'current'), remote: true do %>
-      <%= text_field_tag 'activity[description]', nil,
-                         data: {target: 'tracker.activityText'},
-                         class: 'activity-text-field',
-                         required: true,
-                         placeholder: 'What are you up to?' %>
+  <% if day&.open? %>
+    <% if day.active? %>
+      <%= form_tag work_session_activities_path(work_session_id: 'current'), remote: true do %>
+        <%= text_field_tag 'activity[description]', nil,
+                           data: {target: 'tracker.activityText'},
+                           class: 'activity-text-field',
+                           required: true,
+                           placeholder: 'What are you up to?' %>
+      <% end %>
     <% end %>
     <div class="action-wrapper">
-
       <% if day.active? %>
         <%= link_to work_session_path('current'), method: :patch, remote: true, class: 'break-button' do %>
           <i class="fa fa-coffee"></i> BREAK
         <% end %>
       <% else %>
-            <span class="break-button">
-                  <i class="fa fa-cog"></i> END BREAK
-            </span>
+        <%= button_to work_sessions_path, class: 'break-button', remote: true do %>
+          <i class="fa fa-cog"></i> END BREAK
+        <% end %>
       <% end %>
     </div>
     <div class="action-wrapper">
-            <span class="end-day-button">
-              <i class="fa fa-moon-o"></i> END DAY
-            </span>
+      <%= link_to day_path('current'), method: :patch, remote: true, class: 'end-day-button' do %>
+        <i class="fa fa-moon-o"></i> END DAY
+      <% end %>
     </div>
   <% else %>
     <div class="action-wrapper">

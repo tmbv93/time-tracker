@@ -12,7 +12,17 @@ class Day < ApplicationRecord
     open? && work_sessions.open.any?
   end
 
+  def self.current
+    open.last
+  end
+
+  def close
+    last_session = work_sessions.timeline.last
+    last_session.update(ended_at: Time.current) if last_session.open?
+    update(ended_at: last_session.ended_at)
+  end
+
   def self.current_or_create
-    open.last || create(started_at: Time.current)
+    current || create(started_at: Time.current)
   end
 end

@@ -64,6 +64,33 @@
   width: 280px;
 }
 
+.no-day-display {
+  display: grid;
+  grid-template-rows: 62.11% 37.89%;
+
+  .no-day-main {
+    padding-top: 38%;
+
+    .no-day-title {
+      text-align: center;
+    }
+
+    .no-day-text {
+      text-align: center;
+
+      .new-day-pointer {
+        font-size: 2em;
+        display: block;
+        padding: 16px;
+      }
+    }
+  }
+
+  .noday-footer {
+
+  }
+}
+
 .new-day-button {
   @extend .action-button, .btn-success;
   color: $white;

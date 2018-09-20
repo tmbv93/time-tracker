@@ -8,3 +8,17 @@
   font-weight: bold;
   border-color: $success;
 }
+
+.break {
+  color: white;
+  background-color: $secondary;
+  font-weight: bold;
+  border-color: $secondary;
+}
+
+.end-day {
+  color: white;
+  background-color: $warning;
+  font-weight: bold;
+  border-color: $warning;
+}
