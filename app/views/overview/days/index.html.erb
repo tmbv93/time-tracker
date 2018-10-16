@@ -1,0 +1,66 @@
+<div class="container">
+  <%= form_for Report.new do |f| %>
+    <div class="row">
+      <div class="col-xs-4">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th colspan="3">Days that haven't been added to report yet</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @days.each do |day| %>
+            <tr>
+              <td>
+                <%= link_to day.id, edit_overview_day_path(day) %>
+              </td>
+              <td>
+                <%= local_time(day.started_at, '%d/%m %H:%M') %>
+              </td>
+              <td>
+                <% if day.open? %>
+                  <%= 'Ongoing!' %>
+                <% else %>
+                  <%= local_time(day.ended_at, '%d/%m %H:%M') %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag 'New report', class: 'btn btn-primary' %>
+      </div>
+      <div class="col-xs-5 offset-1">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Reports</th>
+            <th colspan="2">Work time</th>
+            <th>Exports</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @reports.each do |report| %>
+            <tr>
+              <td>
+                <%= local_time(report.created_at, '%d/%m %H:%M') %>
+              </td>
+              <td>
+                <%= pluralize (report.work_time / 1.hour).round, 'hour' %>
+              </td>
+              <td>
+                <%= pluralize report.days.count, 'working day' %>
+              </td>
+              <td>
+                <%= link_to report_path(report, format: :xlsx), class: 'btn btn-light' do %>
+                <i class="fa fa-file-text"></i> Excel
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

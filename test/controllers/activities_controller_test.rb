@@ -27,7 +27,7 @@ class ActivitiesControllerTest < ActionController::TestCase
                              activity: {description: Faker::GameOfThrones.quote}}, xhr: true
     end
   end
-  
+
   test '#create adds activity to last work session "current" work session is specified' do
     work_session = WorkSession.current_or_create
     post :create, params: {work_session_id: 'current',
@@ -40,5 +40,22 @@ class ActivitiesControllerTest < ActionController::TestCase
     post :create, params: {work_session_id: WorkSession.current_or_create,
                            activity: {description: new_description}}, xhr: true
     assert_equal new_description, Activity.last.description
+  end
+
+  test '#update succeeds' do
+    patch :update, params: {
+        id: activities(:regular_work).id,
+        activity: {description: Faker::GameOfThrones.quote}},
+          xhr: true
+    assert_response :success
+  end
+
+  test '#update updates description' do
+    new_description = Faker::GameOfThrones.quote
+    patch :update, params: {
+        id: activities(:regular_work).id,
+        activity: {description: new_description}},
+          xhr: true
+    assert_equal new_description, activities(:regular_work).reload.description
   end
 end

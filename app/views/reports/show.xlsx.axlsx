@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "report_#{@report.id}") do |sheet|
+  sheet.add_row ['Dato',
+                 'Antall timer',
+                 'Aktiviteter']
+
+  @days.each do |day|
+    sheet.add_row [
+                      day.started_at.strftime('%d/%m/%Y'),
+                      in_hours(day.work_time).round(1),
+                      day.activities.pluck(:description).join(", ")
+                  ]
+  end
+
+  sheet.add_row []
+  sheet.add_row [
+                    "#{@days.first.started_at.strftime('%d/%m/%Y')} - #{@days.last.ended_at.strftime('%d/%m/%Y')}",
+                    in_hours(@report.work_time).round(1),
+
+                ]
+end

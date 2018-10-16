@@ -2,7 +2,12 @@ class Day < ApplicationRecord
   has_many :work_sessions, dependent: :destroy
   has_many :activities, through: :work_sessions
 
+  belongs_to :report
+
   scope :open, -> {where.not(started_at: nil).where(ended_at: nil)}
+  scope :closed, -> {where.not(ended_at: nil)}
+  scope :reported, -> {where.not(report_id: nil)}
+  scope :ready_to_report, -> {closed.where(report_id: nil)}
 
   def open?
     started_at.present? && ended_at.nil?
@@ -13,7 +18,7 @@ class Day < ApplicationRecord
   end
 
   def work_time
-    work_sessions.sum {|ws| ws.ended_at - ws.started_at}
+    work_sessions.sum(&:work_time)
   end
 
   def self.current

@@ -2,7 +2,6 @@
   <% if day&.open? %>
     <%= form_tag work_session_activities_path(work_session_id: 'current'), remote: true do %>
       <%= text_field_tag 'activity[description]', nil,
-                         data: {target: 'tracker.activityText'},
                          class: 'activity-text-field',
                          required: true,
                          placeholder: day.active? ? 'What are you up to?' : 'Enjoy your break!',

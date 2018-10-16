@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_142512) do
+ActiveRecord::Schema.define(version: 2018_10_16_105503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(version: 2018_09_18_142512) do
     t.datetime "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "report_id"
+    t.index ["report_id"], name: "index_days_on_report_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "work_sessions", force: :cascade do |t|
@@ -40,5 +56,6 @@ ActiveRecord::Schema.define(version: 2018_09_18_142512) do
   end
 
   add_foreign_key "activities", "work_sessions"
+  add_foreign_key "days", "reports"
   add_foreign_key "work_sessions", "days"
 end

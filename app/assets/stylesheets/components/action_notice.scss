@@ -1,0 +1,27 @@
+.action-notice {
+  background-color: $success;
+  border-radius: 2px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  font-weight: bold;
+  position: fixed;
+  height: 10%;
+
+  display: table;
+  vertical-align: middle;
+
+  padding: 10px;
+  bottom: 15px;
+  right: 15px;
+
+  &.initial-state {
+    display: none;
+  }
+
+  .action-notice-text {
+    display: table-cell;
+    vertical-align: middle;
+    color: $white;
+    font-size: x-large;
+  }
+}

@@ -2,7 +2,7 @@ import {Controller} from 'stimulus'
 import Feed from 'models/feed'
 
 export default class extends Controller {
-    static targets = ['clock', 'activityText']
+    static targets = ['clock']
     static feed;
 
     connect() {

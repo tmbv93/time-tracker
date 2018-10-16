@@ -1,4 +1,4 @@
-<ul id="work-sessions-list" class="work-sessions-list">
+<ul id="work-sessions-list" class="work-sessions-list" data-controller="feed">
   <% current_day = nil %>
   <% last_work_session = nil %>
   <% work_sessions.each do |work_session| %>
@@ -23,8 +23,11 @@
     <% last_work_session = work_session %>
 
     <% work_session.activities.each do |activity| %>
-      <li class="feed-event activity">
-        <%= activity.description %>
+      <li class="feed-event activity display" data-id="<%= activity.id %>" data-action="click->feed#editActivity">
+        <span class="feed-text"><%= activity.description %></span>
+        <%= text_field_tag :description, activity.description,
+                           class: 'feed-input',
+                           data: {action: 'blur->feed#updateActivity keypress->feed#checkKey'} %>
       </li>
     <% end %>
   <% end %>

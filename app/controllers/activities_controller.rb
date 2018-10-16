@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  before_action :set_activity, only: :update
   before_action :set_work_session, only: :create
 
   def create
@@ -8,7 +9,16 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def update
+    @activity.update(activity_params)
+    render json: @activity
+  end
+
   private
+
+  def set_activity
+    @activity = Activity.find params[:id]
+  end
 
   def set_work_session
     if params[:work_session_id] == 'current'

@@ -7,7 +7,7 @@
       <%= render 'controls/main', day: @day %>
     </div>
   </div>
-  <div class="work-sessions-log" data-controller="work_sessions">
+  <div class="work-sessions-log">
     <% if @day %>
       <%= render 'work_sessions/feed', work_sessions: @day.work_sessions.feed %>
     <% else %>
@@ -32,4 +32,8 @@
       </div>
     <% end %>
   </div>
+</div>
+
+<div id="action-notice" class="action-notice initial-state">
+  <p class="action-notice-text"></p>
 </div>

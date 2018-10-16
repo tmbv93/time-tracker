@@ -6,6 +6,9 @@ class WorkSession < ApplicationRecord
   scope :timeline, -> {order(started_at: :asc)}
   scope :feed, -> {timeline.includes(:day, :activities)}
 
+  def work_time
+    ended_at - started_at
+  end
 
   def open?
     started_at.present? && ended_at.nil?
