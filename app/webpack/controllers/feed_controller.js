@@ -1,5 +1,6 @@
 import {Controller} from 'stimulus'
 import DataHandler from 'utils/data_handler'
+import ActionNotice from 'models/action_notice'
 
 export default class extends Controller {
     static targets = ['activity']
@@ -19,9 +20,8 @@ export default class extends Controller {
     }
 
     updateActivity(event) {
-        let newDescription = this.targetElement.getElementsByTagName('input')[0].value
-
-        if (this.targetElement !== undefined) {
+        if (this.targetElement !== undefined && this.targetElement.classList.contains('edit')) {
+            let newDescription = this.targetElement.getElementsByTagName('input')[0].value
             this.targetElement.classList.add('display')
             this.targetElement.classList.remove('edit')
             this.targetElement.getElementsByTagName('span')[0].innerHTML = newDescription
@@ -30,7 +30,7 @@ export default class extends Controller {
                 {activity: {description: newDescription}})
                 .then(function (response) {
                         response.json().then(function (response) {
-                          actionNotice.init('here')
+                          ActionNotice.success("Activity updated.")
                         })
                     }
                 )
