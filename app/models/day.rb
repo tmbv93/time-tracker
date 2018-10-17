@@ -2,7 +2,7 @@ class Day < ApplicationRecord
   has_many :work_sessions, dependent: :destroy
   has_many :activities, through: :work_sessions
 
-  belongs_to :report
+  belongs_to :report, optional: true
 
   scope :open, -> {where.not(started_at: nil).where(ended_at: nil)}
   scope :closed, -> {where.not(ended_at: nil)}
