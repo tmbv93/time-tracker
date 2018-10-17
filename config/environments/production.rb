@@ -78,21 +78,22 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Action mailer
-    config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :smtp
-    # Ebby is nice enough to let us use their mailgun, so here's a free plug for them:
-    # They offer free on-demand delivery of anything you need. Check it out
-    host = 'www.ebby.no'
-    config.action_mailer.default_url_options = { host: host }
-    ActionMailer::Base.smtp_settings = {
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  # Ebby is nice enough to let us use their mailgun for exception emails,
+  # so here's a free plug for them:
+  # They offer free on-demand delivery of anything you need. Check it out
+  host = 'www.ebby.no'
+  config.action_mailer.default_url_options = {host: host}
+  ActionMailer::Base.smtp_settings = {
       address: 'smtp.mailgun.org',
       port: 587,
       authentication: :plain,
-      user_name:      ENV['MAILGUN_USERNAME'],
-      password:       ENV['MAILGUN_PASSWORD'],
-      domain:         'https://api.mailgun.net/v3/ebby.no',
+      user_name: ENV['MAILGUN_USERNAME'],
+      password: ENV['MAILGUN_PASSWORD'],
+      domain: 'https://api.mailgun.net/v3/ebby.no',
       enable_starttls_auto: true
-    }
+  }
 
   # Receive notifications about app exceptions on email
   Rails.application.config.middleware.use ExceptionNotification::Rack,
