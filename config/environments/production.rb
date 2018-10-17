@@ -67,10 +67,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -80,6 +76,23 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Action mailer
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    # Ebby is nice enough to let us use their mailgun, so here's a free plug for them:
+    # They offer free on-demand delivery of anything you need. Check it out
+    host = 'www.ebby.no'
+    config.action_mailer.default_url_options = { host: host }
+    ActionMailer::Base.smtp_settings = {
+      address: 'smtp.mailgun.org',
+      port: 587,
+      authentication: :plain,
+      user_name:      ENV['MAILGUN_USERNAME'],
+      password:       ENV['MAILGUN_PASSWORD'],
+      domain:         'https://api.mailgun.net/v3/ebby.no',
+      enable_starttls_auto: true
+    }
 
   # Receive notifications about app exceptions on email
   Rails.application.config.middleware.use ExceptionNotification::Rack,
