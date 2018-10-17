@@ -40,6 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'roo', '~> 2.7.0'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: '776037c0fc799bb09da8c9ea47980bd3bf296874'
 gem 'axlsx_rails'
+gem 'exception_notification'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
