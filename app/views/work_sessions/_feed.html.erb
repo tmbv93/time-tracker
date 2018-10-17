@@ -3,10 +3,16 @@
   <% last_work_session = nil %>
   <% work_sessions.each do |work_session| %>
     <% if current_day != work_session.day_id %>
-      <li class="feed-event new-day">
+      <li class="feed-event display new-day">
         <i class="fa fa-sun-o"></i>
         <%= local_time(work_session.day.started_at, '%A') %>
-        <span class="pull-right"><%= local_time(work_session.day.started_at, '%H:%M') %></span>
+        <span class="pull-right feed-text"><%= local_time(work_session.day.started_at, '%H:%M') %></span>
+        <span class="pull-right">
+          <%= text_field_tag :time,
+                             local_time(work_session.day.started_at, '%H:%M'),
+                             class: 'feed-input'
+          %>
+        </span>
       </li>
       <% current_day = work_session.day_id %>
     <% end %>
