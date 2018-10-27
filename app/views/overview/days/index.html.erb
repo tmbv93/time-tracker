@@ -28,6 +28,7 @@
           <% end %>
           </tbody>
         </table>
+        <p><%= in_hours(@days.sum(&:work_time)).round(1) %> unreported work hours.</p>
         <%= submit_tag 'New report', class: 'btn btn-primary' %>
       </div>
       <div class="col-xs-5 offset-1">
@@ -53,7 +54,7 @@
               </td>
               <td>
                 <%= link_to report_path(report, format: :xlsx), class: 'btn btn-light' do %>
-                <i class="fa fa-file-text"></i> Excel
+                  <i class="fa fa-file-text"></i> Excel
                 <% end %>
               </td>
             </tr>
